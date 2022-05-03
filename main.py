@@ -43,7 +43,7 @@ def set_fan_speed(percent: int) -> None:
 
 if __name__ == "__main__":
     logger.info("Monitoring temperature and adjusting fan speed in real time...")
-    curve = ExponentialFanCurve(min_temp=40, max_temp=55, order=2)
+    curve = ExponentialFanCurve(min_temp=40, max_temp=55, order=2, min_fan=5)
     while True:
         temp = read_temperature()
         logger.info(f"Temperature: {temp} C°")
