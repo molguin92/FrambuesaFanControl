@@ -1,0 +1,8 @@
+rpi.gpio
+smbus
+numpy
+scipy
+click
+loguru
+
+# i2ctools
