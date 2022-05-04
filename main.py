@@ -10,7 +10,7 @@ from threading import Thread
 
 from loguru import logger
 
-from fan_curves import ExponentialFanCurve
+from fan_curves import SimpleSmoothFanCurve
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -33,7 +33,7 @@ def read_temperature() -> float:
 
 def set_fan_speed(percent: int) -> None:
     rev = GPIO.RPI_REVISION
-    if rev == 2 or rev == 3:
+    if rev in (2, 3):
         bus = smbus.SMBus(1)
     else:
         bus = smbus.SMBus(0)
@@ -43,7 +43,7 @@ def set_fan_speed(percent: int) -> None:
 
 if __name__ == "__main__":
     logger.info("Monitoring temperature and adjusting fan speed in real time...")
-    curve = ExponentialFanCurve(min_temp=40, max_temp=55, order=2, min_fan=5)
+    curve = SimpleSmoothFanCurve(min_temp=40, max_temp=55, order=2, min_fan=5)
     while True:
         temp = read_temperature()
         logger.info(f"Temperature: {temp} C°")
