@@ -43,7 +43,7 @@ def set_fan_speed(percent: int) -> None:
 
 if __name__ == "__main__":
     logger.info("Monitoring temperature and adjusting fan speed in real time...")
-    curve = SimpleSmoothFanCurve(min_temp=40, max_temp=55, order=2, min_fan=5)
+    curve = SimpleSmoothFanCurve(min_temp=35, max_temp=50, order=0.5, min_fan=5)
     while True:
         temp = read_temperature()
         logger.info(f"Temperature: {temp} C°")

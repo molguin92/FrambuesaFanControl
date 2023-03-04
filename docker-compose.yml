@@ -2,7 +2,10 @@
 version: "3"
 services:
   fancontrol:
-    image: molguin/frambuesafancontrol:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+        #    image: molguin/frambuesafancontrol:latest
     privileged: true
     restart: always
 ...
